@@ -1,15 +1,12 @@
-import SearchInput from "./components/SearchBookInput";
-
-import "./App.css";
 import { StoreProvider } from "store/store";
-import SearchResults from "components/SearchResults";
+import AppRouter from "Routes";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <StoreProvider>
-        <SearchInput />
-        <SearchResults />
+        <AppRouter />
       </StoreProvider>
     </div>
   );

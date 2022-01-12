@@ -2,7 +2,7 @@ import BookCard from "components/BookCard";
 import LoadingIndicator from "components/LoadingIndicator";
 import React from "react";
 import { useStore } from "store/store";
-import "./style.css";
+import { result_area } from "./style.js";
 
 function SearchResults() {
   const [state] = useStore();
@@ -10,14 +10,14 @@ function SearchResults() {
 
   if (state.isLoading)
     return (
-      <div>
+      <div className={result_area}>
         <LoadingIndicator />
       </div>
     );
   return (
-    <div>
-      <span>{showQuery && `Search results for " ${state.query} " are:`}</span>
-      <div className="flex wrap result_area">
+    <div style={{ margin: "20px" }}>
+      <h2>{showQuery && `Search results for " ${state.query} " are:`}</h2>
+      <div className={result_area}>
         {state?.results?.map((book) => {
           return <BookCard key={book.id} details={book} />;
         })}
