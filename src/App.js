@@ -1,11 +1,14 @@
 import SearchInput from "./components/SearchBookInput";
 
 import "./App.css";
+import { StoreProvider } from "store/store";
 
 function App() {
   return (
     <div className="App">
-      <SearchInput />
+      <StoreProvider>
+        <SearchInput />
+      </StoreProvider>
     </div>
   );
 }

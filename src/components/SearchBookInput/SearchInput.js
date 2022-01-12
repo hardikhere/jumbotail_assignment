@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { getBooksByQuery } from "../../services/getBooks.service";
+import { getBooksByQuery } from "services/getBooks.service";
+import { getBooks, setBooks } from "store/getSearchResultsReducer";
+import { useStore } from "store/store";
 import "./style.css";
 
 export default function SearchInput() {
   const [query, setQuery] = useState("");
+  const [state, dispatch] = useStore();
   const handleSearch = async (e) => {
     e.preventDefault();
+    dispatch(getBooks(query));
     const { data } = await getBooksByQuery(query);
+    dispatch(setBooks(data));
     clearQuery();
-    console.log("🚀 ~ file: App.js ~ line 9 ~ fetchBooks ~ data", data);
   };
 
   const handleChange = (e) => {
@@ -19,8 +23,10 @@ export default function SearchInput() {
   };
   return (
     <form onSubmit={handleSearch}>
-      <input className="search_input" onChange={handleChange} />
-      <button type="submit">Search</button>
+      <input className="search_input" value={query} onChange={handleChange} />
+      <button type="submit" disabled={state.isLoading}>
+        Search
+      </button>
     </form>
   );
 }
