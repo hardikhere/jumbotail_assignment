@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getBooksByQuery } from "services/getBooks.service";
 import { getBooks, setBooks } from "store/getSearchResultsReducer";
-import { useStore } from "store/store";
+import { useStore } from "store/Store";
 import { search_input, search_btn_styles } from "./style.js";
 
 export default function SearchInput() {

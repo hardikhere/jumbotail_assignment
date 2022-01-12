@@ -1,4 +1,4 @@
-import { StoreProvider } from "store/store";
+import { StoreProvider } from "store/Store";
 import AppRouter from "Routes";
 import "./App.css";
 

@@ -14,6 +14,7 @@ export const header_style = css`
   display: flex;
   flex-direction: column;
   padding: 10px;
+  height: 30px;
 `;
 
 export const title_style = css`

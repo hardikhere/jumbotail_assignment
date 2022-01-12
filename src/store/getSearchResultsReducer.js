@@ -1,9 +1,10 @@
+import { normalizeBooksData } from "./utils";
 // action types
 const GET_BOOKS = "GET_BOOKS";
 const SET_BOOKS = "SET_BOOKS";
 
 export const initialBooksState = {
-  results: [],
+  results: {},
   query: "",
   isLoading: false,
 };
@@ -30,7 +31,12 @@ export const getBooksReducer = (state = initialBooksState, action) => {
     }
 
     case SET_BOOKS: {
-      return { ...state, results: payload, isLoading: false };
+      const normalizedBookData = normalizeBooksData(payload);
+      console.log(
+        "🚀 ~ file: getSearchResultsReducer.js ~ line 35 ~ getBooksReducer ~ normalizedBookData",
+        normalizedBookData
+      );
+      return { ...state, results: normalizedBookData, isLoading: false };
     }
 
     default:
