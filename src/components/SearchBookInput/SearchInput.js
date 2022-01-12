@@ -11,7 +11,11 @@ export default function SearchInput() {
     e.preventDefault();
     dispatch(getBooks(query));
     const { data } = await getBooksByQuery(query);
-    dispatch(setBooks(data));
+    console.log(
+      "🚀 ~ file: SearchInput.js ~ line 14 ~ handleSearch ~ data",
+      data
+    );
+    dispatch(setBooks(data.items));
     clearQuery();
   };
 

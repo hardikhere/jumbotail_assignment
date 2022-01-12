@@ -1,0 +1,24 @@
+.book_card {
+  padding: 4px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px rgba(65, 65, 65, 0.6);
+  margin: 8px;
+  width: 250px;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.subtitle {
+  font-weight: lighter;
+  font-size: smaller;
+}

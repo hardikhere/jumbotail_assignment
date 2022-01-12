@@ -2,6 +2,7 @@ import BookCard from "components/BookCard";
 import LoadingIndicator from "components/LoadingIndicator";
 import React from "react";
 import { useStore } from "store/store";
+import "./style.css";
 
 function SearchResults() {
   const [state] = useStore();
@@ -16,9 +17,9 @@ function SearchResults() {
   return (
     <div>
       <span>{showQuery && `Search results for " ${state.query} " are:`}</span>
-      <div>
-        {state.results?.items.map((book) => {
-          return <BookCard />;
+      <div className="flex wrap result_area">
+        {state?.results?.map((book) => {
+          return <BookCard key={book.id} details={book} />;
         })}
       </div>
     </div>
