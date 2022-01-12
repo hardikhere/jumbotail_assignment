@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 
 function BookCard(props) {
-  return <div></div>;
+  return <div>book</div>;
 }
 
 export default BookCard;
