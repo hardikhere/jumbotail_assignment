@@ -8,6 +8,7 @@ const card_style = css`
   border-radius: 4px;
   margin: 6px;
   width: max-content;
+  
 `;
 
 function Card({ children }) {
