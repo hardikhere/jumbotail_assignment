@@ -1,15 +1,18 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import BookDetailsPage from "screens/BookDetailsPage";
-import SearchPage from "screens/SearchPage";
+import LoadingIndicator from "components/LoadingIndicator";
+const BookDetailsPage = lazy(() => import("screens/BookDetailsPage"));
+const SearchPage = lazy(() => import("screens/SearchPage"));
 
 function AppRouter() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" exact element={<SearchPage />} />
-        <Route path="/book/:id" exact element={<BookDetailsPage />} />
-      </Routes>
+      <Suspense fallback={<LoadingIndicator />}>
+        <Routes>
+          <Route path="/" exact element={<SearchPage />} />
+          <Route path="/book/:id" exact element={<BookDetailsPage />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 }
