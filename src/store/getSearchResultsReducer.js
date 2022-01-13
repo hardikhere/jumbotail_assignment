@@ -32,10 +32,6 @@ export const getBooksReducer = (state = initialBooksState, action) => {
 
     case SET_BOOKS: {
       const normalizedBookData = normalizeBooksData(payload);
-      console.log(
-        "🚀 ~ file: getSearchResultsReducer.js ~ line 35 ~ getBooksReducer ~ normalizedBookData",
-        normalizedBookData
-      );
       return { ...state, results: normalizedBookData, isLoading: false };
     }
 

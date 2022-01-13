@@ -6,6 +6,7 @@ export const header_style = css`
   align-items: center;
   min-height: 15rem;
   position: relative;
+  padding: 10px;
   color: white;
   flex-direction: column;
   background: rgb(11, 198, 202);
@@ -24,6 +25,9 @@ export const header_style = css`
 
 export const image_container = css`
   position: absolute;
+  @media (max-width: 720px) {
+    position: relative;
+  }
   bottom: -20%;
   left: 2rem;
   height: 10rem;

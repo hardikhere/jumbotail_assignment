@@ -3,11 +3,12 @@ import { getBooksByQuery } from "services/getBooks.service";
 import { getBooks, setBooks } from "store/getSearchResultsReducer";
 import { useStore } from "store/Store";
 import { search_input, search_btn_styles } from "./style.js";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
-export default function SearchInput() {
+export default function SearchInput({ onBookPage }) {
   const [query, setQuery] = useState("");
   const [state, dispatch] = useStore();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -21,6 +22,12 @@ export default function SearchInput() {
     dispatch(getBooks(queryToSearch));
     const { data } = await getBooksByQuery(queryToSearch);
     dispatch(setBooks(data.items));
+    if (onBookPage) {
+      setTimeout(() => {
+        navigate(`/?q=${query}`);
+      }, 0);
+      return;
+    }
     setSearchParams({ q: queryToSearch });
   };
 
