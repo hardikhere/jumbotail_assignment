@@ -32,4 +32,5 @@ export const image_container_style = css`
   display: flex;
   justify-content: center;
   height: 300px;
+  overflow: hidden;
 `;

@@ -1,25 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getBooksByQuery } from "services/getBooks.service";
 import { getBooks, setBooks } from "store/getSearchResultsReducer";
 import { useStore } from "store/Store";
 import { search_input, search_btn_styles } from "./style.js";
+import { useSearchParams } from "react-router-dom";
 
 export default function SearchInput() {
   const [query, setQuery] = useState("");
   const [state, dispatch] = useStore();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const item = searchParams.get("q");
+    if (!!item) {
+      getResultsFromQuery(item);
+    }
+  }, []);
+
+  const getResultsFromQuery = async (queryToSearch) => {
+    dispatch(getBooks(queryToSearch));
+    const { data } = await getBooksByQuery(queryToSearch);
+    dispatch(setBooks(data.items));
+    setSearchParams({ q: queryToSearch });
+  };
+
   const handleSearch = async (e) => {
-    e.preventDefault();
+    e?.preventDefault();
     if (query.length === 0) {
       alert("Search Query can not be empty!");
       return;
     }
-    dispatch(getBooks(query));
-    const { data } = await getBooksByQuery(query);
-    console.log(
-      "🚀 ~ file: SearchInput.js ~ line 14 ~ handleSearch ~ data",
-      data
-    );
-    dispatch(setBooks(data.items));
+    await getResultsFromQuery(query);
     clearQuery();
   };
 

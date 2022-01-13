@@ -8,7 +8,7 @@ function AppRouter() {
     <Router>
       <Routes>
         <Route path="/" exact element={<SearchPage />} />
-        <Route path="/book/:id" exact element={ <BookDetailsPage />} />
+        <Route path="/book/:id" exact element={<BookDetailsPage />} />
       </Routes>
     </Router>
   );
